@@ -41,16 +41,18 @@ def update
 end
 
 def destroy
-  @task = Task.find(params[:id])
-  @task.destroy
+   @task = Task.find(params[:id])
+   @task.destroy
 
-  flash[:success] = 'タスクが削除されました'
-  redirect_to tasks_path
+    flash[:success] = 'タスクは正常に削除されました'
+    redirect_to tasks_url
+  
 end
+ 
+ private
+
+  def task_params
+    params.require(:task).permit(:content)
+  end
 end
 
-private
-
-def task_params
-  params.require(:task).permit(:content)
-end
