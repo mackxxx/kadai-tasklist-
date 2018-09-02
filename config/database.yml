@@ -48,7 +48,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  adapter: postgresql
+  adapter: postgresq2
   encoding: unicode
   pool: 5
   database: kadai-tasklist_production
