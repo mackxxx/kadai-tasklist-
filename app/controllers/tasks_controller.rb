@@ -1,19 +1,18 @@
 class TasksController < ApplicationController
 before_action :set_task, only: [:show, :edit, :update, :destroy]
 
-def index
-  @tasks = Task.order(created_at: :desc).page(params[:page]).per(3)
-end
+　def index
+  　@tasks = Task.order(created_at: :desc).page(params[:page]).per(3)
+　end
 
-def show
-  
-end
+  def show
+  end
 
-def new
-  @task = Task.new
-end
+  def new
+  　@task = Task.new
+　end
 
-  def create
+　def create
     @task = Task.new(task_params)
 
     if @task.save
@@ -25,38 +24,36 @@ end
     end
   end
 
-def edit
+  def edit
   
-end
-
-def update
-
-
-  if @task.update(task_params)
-    flash[:success] = 'タスクが編集されました'
-    redirect_to @task
-  else
-    flash.now[:danger] = 'タスクが編集されませんでした'
-    render :new
   end
-end
 
-def destroy
+  def update
+
+
+     if @task.update(task_params)
+       flash[:success] = 'タスクが編集されました'
+      redirect_to @task
+      else
+      flash.now[:danger] = 'タスクが編集されませんでした'
+      render :new
+     end
+  end
+
+  def destroy
   
-   @task.destroy
+     @task.destroy
 
     flash[:success] = 'タスクは正常に削除されました'
     redirect_to tasks_url
-  
-end
+  end
  
- private
+  private
   def set_task
-    @task = Task.find(params[:id])
+     @task = Task.find(params[:id])
   end
 
   def task_params
-    params.require(:task).permit(:content,:status)
+     params.require(:task).permit(:content,:status)
   end
 end
-
