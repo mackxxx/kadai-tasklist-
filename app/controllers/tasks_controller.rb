@@ -1,18 +1,18 @@
 class TasksController < ApplicationController
 before_action :set_task, only: [:show, :edit, :update, :destroy]
 
-　def index
-  　@tasks = Task.order(created_at: :desc).page(params[:page]).per(3)
-　end
+ def index
+   @tasks = Task.order(created_at: :desc).page(params[:page]).per(3)
+ end
 
-  def show
-  end
+ def show
+ end
 
-  def new
-  　@task = Task.new
-　end
+ def new
+   @task = Task.new
+ end
 
-　def create
+ def create
     @task = Task.new(task_params)
 
     if @task.save
@@ -22,8 +22,8 @@ before_action :set_task, only: [:show, :edit, :update, :destroy]
       flash[:danger] = 'タスクが投稿されません'
       render :new
     end
-  end
-
+ end
+  
   def edit
   
   end
