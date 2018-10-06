@@ -12,17 +12,17 @@ before_action :set_task, only: [:show, :edit, :update, :destroy]
    @task = Task.new
  end
 
- def create
-    @task = Task.new(task_params)
-
+def create
+    @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:success] = 'タスクが投稿されました'
-      redirect_to @task
+      redirect_to root_url
     else
-      flash[:danger] = 'タスクが投稿されません'
-      render :new
+      @tasks = current_user.tasks.order('created_at DESC').page(params[:page])
+      flash.now[:danger] = 'タスクが投稿されません'
+      render 'toppages/index'
     end
- end
+end
   
   def edit
   
@@ -57,3 +57,7 @@ before_action :set_task, only: [:show, :edit, :update, :destroy]
      params.require(:task).permit(:content,:status)
   end
 end
+
+
+
+
