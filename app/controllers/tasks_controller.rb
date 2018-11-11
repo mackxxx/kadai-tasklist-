@@ -25,27 +25,24 @@ def create
 end
   
   def edit
-  
+    @task = Task.find(params[:id])
   end
 
   def update
-
-
-     if @task.update(task_params)
+    @task = current_user.tasks.build(task_params)
+    if @task.update(task_params)
        flash[:success] = 'タスクが編集されました'
-      redirect_to @task
-      else
-      flash.now[:danger] = 'タスクが編集されませんでした'
-      render :new
-     end
+       redirect_to @task
+       else
+       flash.now[:danger] = 'タスクが編集されませんでした'
+       render :new
+    end
   end
 
   def destroy
-  
-     @task.destroy
-
-    flash[:success] = 'タスクは正常に削除されました'
-    redirect_to tasks_url
+    @task.destroy
+    flash[:success] = 'タスクを削除しました。'
+    redirect_back(fallback_location: root_path)
   end
  
   private
