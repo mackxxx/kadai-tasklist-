@@ -1,18 +1,18 @@
 <% if logged_in? %>
-  <div class="row">
+ <div class="row">
     <aside class="col-md-4">
       <%= form_for(@tasks) do |f| %>
-        <div class="form-group">
-          <%= f.text_area :content, class: 'form-control', rows: 5 %>
-        < /div >
+ </div>     
+    <div class="form-group">
+      <%= f.text_area :content, class: 'form-control', rows: 5 %>
+     </div>
         <% f.submit 'Post', class: 'btn btn-primary btn-block' %>
       <%end %>
     </aside>
     <div class="col-xs-8">
       <%#= render 'tasks/tasks', tasks: @tasks %>
-      
-    </div>
-  </div>
+   </div>
+  
   <% if @tasks.any? %>
     <table class="table table-striped">
       <thead>
@@ -35,18 +35,16 @@
     <div>
       <%= paginate @tasks %>
     </div>
-  <% end %>
-
-  <%= link_to '新規タスクの投稿', new_user_path, class: "btn btn-primary" %>
-
-
-<% else %>
- 
-  <div class="center jumbotron">
-    <div class="text-center">
+      <%= link_to '新規タスクの投稿', new_user_path, class: "btn btn-primary" %>
+　    <%= link_to 'このメッセージを編集する', edit_task_path(@task), class: 'btn btn-default' %>
+      <% end %>
+      <% else %>
+    <div class="center jumbotron">
+ </div>
+  <div class="text-center">
       <h1>Welcome to the tasks</h1>
       <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
-    </div>
+  </div>
   </div>
 <% end %>
 
